@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+  <select id="selectByRR" resultType="memberVo">
+  	select * from member where rr_no=#{rr_no}
+  </select>
+  
+  <select id="checkId" resultType="java.lang.Integer">
+  	select count(*) from member where id=#{id}
+  </select>
+  
+  <select id="checkRR" resultType="java.lang.Integer">
+  	select count(*) from member where rr_no=#{rr_no} and roles=#{roles}
+  </select>
+  
+  <insert id="insert">
+  	insert into member values(seq_mem.nextval,#{id},#{pwd},#{name},#{rr_no},#{tel},#{email},#{addr},#{roles},#{emailReceive},#{smsReceive})
+  </insert>
+  
+  <insert id="insertGuest">  
+  	insert into member values(seq_mem.nextval,null,null,#{name},#{rr_no},#{tel},null,null,#{roles},null,null)
+  </insert>
+  
+</mapper>
